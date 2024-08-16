@@ -1,0 +1,1 @@
+.venv\Scripts\activate && cd testproject && python manage.py runserver

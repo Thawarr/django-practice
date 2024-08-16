@@ -1,23 +1,24 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
+{% extends "layout.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>testapp</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-</head>
+{% block title %}About{% endblock %}
 
-<body>
-    <div class="center-container">
-        <div class="item"></div>
-        <div class="item">
-            <h1>Test App</h1>
-            <h1>(Home page)</h1>
+{% block content %}
+<div>
+    {% comment %} <div class="text-center m-3">
+        <h1>List of Tenants</h1>
+    </div> {% endcomment %}
+    <div class="grid grid-cols-5 gap-14 m-20">
+        {% for tenant in tenants %}
+        <div class="border border-white text-white justify-center p-5">
+            <div>
+                <img src="{{ tenant.image.url }}" alt="{{ tenant.name }}">
+            </div>
+            <h3 class="m-2">Name: {{ tenant.name }}</h3>
+            <a href="{% url 'tenant_details' tenant.id%}">
+                <button class="bg-blue-300 text-black p-2 rounded w-[100%]">See Details<button>
+            </a> 
         </div>
-        <div class="item"></div>
+        {% endfor %}
     </div>
-</body>
-
-</html>
+</div>
+{% endblock %}
